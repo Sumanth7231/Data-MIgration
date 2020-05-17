@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:salesforce="http://www.mulesoft.org/schema/mule/salesforce" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd
+http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mule/salesforce/current/mule-salesforce.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+	<munit:config name="bussinessLogic-test-suite.xml" />
+	<munit:test name="bussinessLogic-test-suite-ChoiceContactsTest" doc:id="89dc18ec-85f9-4a6b-861c-56a057e03ddb" description="Test">
+		<munit:behavior >
+			<set-variable value="sfdc" doc:name="Set Variable" doc:id="acdfc3b8-d290-4134-98c7-98b8147818f4" variableName="db"/>
+			<choice doc:name="Choice" doc:id="0b3ecf5d-4d06-407e-937e-af4e02b28365" >
+				<when expression="#[vars.db=='sfdc']">
+					<set-payload value="payload" doc:name="Set Payload" doc:id="f61962b7-f22a-4535-bfb9-d80967ae3149" />
+				</when>
+				<when expression="#[vars.db=='db']">
+					<set-payload value="payload" doc:name="Set Payload" doc:id="bb3e359d-4767-4537-81ff-9aaadad8b840" />
+				</when>
+				<otherwise>
+					<set-payload value="payload" doc:name="Set Payload" doc:id="1cc75331-16de-475a-a400-8faad17dc4f6" />
+				</otherwise>
+			</choice>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to ChoiceContacts" doc:id="e9326c87-af07-4836-acd4-fb2b80c278eb" name="ChoiceContacts"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="55005413-3783-47d5-bdea-0963683d4609" actual="#[payload]" expected="payload"/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+	<flow name="ErrorHandlerFlow" doc:id="32e89dbe-4a49-4bb2-9aae-4644907b6ebd" >
+		<logger level="INFO" doc:name="Logger" doc:id="4ac1f5fb-80a8-464b-8bf7-ecc5ebbcea21" message="=========Error Occurred=========="/>
+	</flow>
+</mule>

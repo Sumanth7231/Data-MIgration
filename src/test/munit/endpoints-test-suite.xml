@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="endpoints-test-suite.xml" />
+	<munit:test name="endpoints-test-suite-post:\accounts:application\json:data-migration-api-configTest" doc:id="c878b1f4-8beb-4f87-9fd5-eec6954a6d91" description="Test">
+		<munit:behavior >
+			<flow-ref doc:name="Flow Reference" doc:id="63d70c08-3199-46ce-82be-48dd562bd69a" name="choiceAccounts"/>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to post:\accounts:application\json:data-migration-api-config" doc:id="d1983efd-25ae-4e41-9f48-0470ebd06d76" name="post:\accounts:application\json:data-migration-api-config"/>
+		</munit:execution>
+		<munit:validation>
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="061ec385-c53e-491e-ae53-7c563ff8811c" actual="#[payload]" expected='#["message": "Account created..."]'/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="endpoints-test-suite-post:\contacts:application\json:data-migration-api-configTest" doc:id="82750aa7-2c54-491f-9503-1390ee04acd9" description="Test">
+		<munit:behavior >
+			<flow-ref doc:name="Flow Reference" doc:id="00995cd5-3809-46a8-b4b6-67c8e3515ad1" name="ChoiceContacts"/>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to post:\contacts:application\json:data-migration-api-config" doc:id="1826dabc-a1c0-4861-b00a-91852aa9379c" name="post:\contacts:application\json:data-migration-api-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="da61c55b-9fe3-4088-940a-a813bf098144" actual="#[payload]" expected='#["Message": "Contact Created..."]'/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="endpoints-test-suite-get:\contacts:data-migration-api-configTest" doc:id="4757891f-789b-4085-b9d0-267bd458a918" description="Test">
+		<munit:behavior>
+			<set-payload value="#[payload]" doc:name="Set Payload" doc:id="aca0ae23-b482-45aa-862f-1d146da28cb9" />
+		</munit:behavior>
+		<munit:execution>
+			<flow-ref doc:name="Flow-ref to get:\contacts:data-migration-api-config" doc:id="f878ffa4-3ed2-490f-a036-a012bb0864ab" name="get:\contacts:data-migration-api-config" />
+		</munit:execution>
+		<munit:validation>
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="5a4af26e-1ec7-4c0a-9d5b-0281c2502862" actual="#[payload]" expected="#[payload]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="endpoints-test-suite-get:\accounts:data-migration-api-configTest" doc:id="76989129-af36-4972-9a05-5d8401fedaa1" description="Test">
+		<munit:execution>
+			<flow-ref doc:name="Flow-ref to get:\accounts:data-migration-api-config" doc:id="cc951490-491a-42d8-bab0-802841f22b94" name="get:\accounts:data-migration-api-config" />
+		</munit:execution>
+		<munit:validation>
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="14629ad0-0af9-42f2-a999-3359bef23840" actual="#[payload]" expected="#[payload]" />
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
