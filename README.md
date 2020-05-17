@@ -1,3 +1,3 @@
 # Data-Migration
-This a Mule 4 project  _Accounts_ and _Contacts_ of **Salesforce** data will be Synchronized bidirectionallay from salesforce to **Mysql 
-Database** Based on Event Based
+This a Mule 4 project of which will  synchronize _Accounts_ and _Contacts_ of **Salesforce** data  bidirectionallay from salesforce to 
+**Mysql Database** Based on Event Based....
